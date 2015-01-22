@@ -72,35 +72,33 @@ public abstract class AbstractOpenshiftConfiguration implements IOpenShiftConfig
 		}
 	}
 
-	protected AbstractOpenshiftConfiguration() throws FileNotFoundException, IOException {
+	protected AbstractOpenshiftConfiguration() throws IOException {
 		this(null, null);
 	}
 
-	protected AbstractOpenshiftConfiguration(IOpenShiftConfiguration parentConfiguration) throws FileNotFoundException,
-			IOException {
+	protected AbstractOpenshiftConfiguration(IOpenShiftConfiguration parentConfiguration) throws IOException {
 		this(null, parentConfiguration);
 	}
 
 	protected AbstractOpenshiftConfiguration(File file, IOpenShiftConfiguration parentConfiguration)
-			throws FileNotFoundException, IOException {
+			throws IOException {
 		initProperties(file, parentConfiguration == null ? null : parentConfiguration.getProperties());
 	}
 
-	protected void initProperties(File file) throws FileNotFoundException, IOException {
+	protected void initProperties(File file) throws IOException {
 		initProperties(file, null);
 	}
 
-	protected void initProperties(Properties defaultProperties) throws FileNotFoundException, IOException {
+	protected void initProperties(Properties defaultProperties) throws IOException {
 		initProperties(null, defaultProperties);
 	}
 
-	protected void initProperties(File file, Properties defaultProperties) throws FileNotFoundException, IOException {
+	protected void initProperties(File file, Properties defaultProperties) throws IOException {
 		this.file = file;
 		this.properties = getProperties(file, defaultProperties);
 	}
 
-	protected Properties getProperties(File file, Properties defaultProperties)
-			throws FileNotFoundException, IOException {
+	protected Properties getProperties(File file, Properties defaultProperties) throws IOException {
 
 		if (file == null
 				|| !file.canRead()) {

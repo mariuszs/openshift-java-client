@@ -10,25 +10,6 @@
  ******************************************************************************/
 package com.openshift.internal.client;
 
-import static com.openshift.client.utils.Samples.GET_DOMAINS;
-import static com.openshift.client.utils.Samples.GET_DOMAINS_FOOBARZ_APPLICATIONS_3EMBEDDED;
-import static com.openshift.client.utils.UrlEndsWithMatcher.urlEndsWith;
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import com.openshift.client.IApplication;
 import com.openshift.client.IDomain;
 import com.openshift.client.IGearGroup;
@@ -45,6 +26,23 @@ import com.openshift.internal.client.httpclient.request.JsonMediaType;
 import com.openshift.internal.client.httpclient.request.Parameter;
 import com.openshift.internal.client.response.CartridgeResourceDTO;
 import com.openshift.internal.client.utils.IOpenShiftJsonConstants;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import static com.openshift.client.utils.Samples.GET_DOMAINS;
+import static com.openshift.client.utils.Samples.GET_DOMAINS_FOOBARZ_APPLICATIONS_3EMBEDDED;
+import static com.openshift.client.utils.UrlEndsWithMatcher.urlEndsWith;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Jeff Cantrill

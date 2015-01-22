@@ -374,7 +374,7 @@ public class ApplicationSSHSession implements IApplicationSSHSession {
 		ChannelExec channel = null;
 		try {
 			channel = (ChannelExec) session.openChannel(JSCH_EXEC_CHANNEL);
-			((ChannelExec) channel).setCommand(command);
+			channel.setCommand(command);
 			final OutputStream remoteStdIn = channel.getOutputStream();
 
 			InputStream in = channel.getInputStream();
@@ -385,7 +385,9 @@ public class ApplicationSSHSession implements IApplicationSSHSession {
 			}
 			return channelResponse;
 		} catch (JSchException e) {
-			channel.disconnect();
+			if (channel != null) {
+				channel.disconnect();
+			}
 			throw new OpenShiftSSHOperationException(e,
 					"Could no execute remote ssh command \"{0}\" on application {1}",
 					command, application.getName());

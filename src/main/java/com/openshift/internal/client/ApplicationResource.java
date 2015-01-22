@@ -880,7 +880,6 @@ public class ApplicationResource extends AbstractOpenShiftResource implements IA
 			throw new OpenShiftSSHOperationException("No SSH session available for application ''{0}''", this.getName());
 		}
 		Channel channel = null;
-		BufferedReader reader = null;
 		try {
 			session.openChannel("exec");
 			channel = session.openChannel("exec");
@@ -888,20 +887,10 @@ public class ApplicationResource extends AbstractOpenShiftResource implements IA
 			channel.connect();
 			return sshStream.getLines(channel);
 		} catch (JSchException e) {
-			throw new OpenShiftSSHOperationException(e, "Failed to execute remote ssh command \"{0}\"",
-					this.getName());
+			throw new OpenShiftSSHOperationException(e, "Failed to execute remote ssh command \"{0}\"", this.getName());
 		} catch (IOException e) {
-			throw new OpenShiftSSHOperationException(e, "Failed to execute remote ssh command \"{0}\"",
-					this.getName());
+			throw new OpenShiftSSHOperationException(e, "Failed to execute remote ssh command \"{0}\"", this.getName());
 		} finally {
-
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					LOGGER.error("Failed to close SSH error stream reader", e);
-				}
-			}
 
 			if (channel != null && channel.isConnected()) {
 				channel.disconnect();

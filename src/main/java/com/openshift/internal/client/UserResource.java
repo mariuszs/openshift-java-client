@@ -231,14 +231,10 @@ public class UserResource extends AbstractOpenShiftResource implements IUser {
 	}
 
 	@Override
-	public IOpenShiftSSHKey getSSHKeyByPublicKey(String publicKey)
-			throws OpenShiftUnknonwSSHKeyTypeException, OpenShiftException {
+	public IOpenShiftSSHKey getSSHKeyByPublicKey(String publicKey) throws OpenShiftException {
 		Assert.notNull(publicKey);
 
 		IOpenShiftSSHKey matchingKey = null;
-		if (publicKey == null) {
-			return null;
-		}
 
 		for (SSHKeyResource key : getCachedOrLoadSSHKeys().values()) {
 			if (publicKey.equals(key.getPublicKey())) {

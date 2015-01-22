@@ -61,21 +61,14 @@ public class OpenShiftTestConfiguration extends AbstractOpenshiftConfiguration {
 
 	private static class IntegrationTestConfiguration extends AbstractOpenshiftConfiguration {
 
-		public IntegrationTestConfiguration(IOpenShiftConfiguration parentConfiguration)
-				throws FileNotFoundException, IOException {
+		public IntegrationTestConfiguration(IOpenShiftConfiguration parentConfiguration) throws IOException {
 			super(parentConfiguration);
 		}
 
-		protected Properties getProperties(File file, Properties defaultProperties)
-				throws FileNotFoundException, IOException {
-			InputStream in = null;
-			try {
-				Properties properties = new Properties(defaultProperties);
-				properties.load(getClass().getResourceAsStream(INTEGRATION_TEST_PROPERTIES));
-				return properties;
-			} finally {
-				StreamUtils.close(in);
-			}
+		protected Properties getProperties(File file, Properties defaultProperties) throws IOException {
+			Properties properties = new Properties(defaultProperties);
+			properties.load(getClass().getResourceAsStream(INTEGRATION_TEST_PROPERTIES));
+			return properties;
 		}
 	}
 }
